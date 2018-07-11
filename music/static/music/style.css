@@ -1,0 +1,29 @@
+body{
+        background: white url("images/background.jpg");
+
+   }
+.navbar{
+    border-radius:0;
+    border-bottom: 20px;
+}
+
+.navbar-brand, .navbar-nav, body{
+    font-family:'Satisfy', cursive;
+}
+
+.songname,h1,h3{
+    color: white;
+    margin-left:30px;
+}
+
+.favorite{
+    color: blue;
+}
+h2{
+    color: white;
+    margin-left:10px;
+    margin-top:50px;
+}
+.title_color{
+    color: black;
+}

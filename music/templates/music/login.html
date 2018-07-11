@@ -1,0 +1,16 @@
+{% extends 'music/base.html'%}
+{% block title%}Login{% endblock%}
+{% block content%}
+
+<br><br><br>
+
+<form method="post">
+      {% csrf_token %}
+       {{form.as_p}}
+    <button type="submit" class="btn btn-primary btn-sm">LOGIN</button>
+<br><p>OR</p>
+<a href="{% url 'music:register' %}" class="btn btn-primary btn-sm" role="button">REGISTER</a>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+
+{% extends 'music/base.html'%}
+{% block content%}
+<div class="albums-container container-fluid">
+
+    <!-- Albums-->
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{username}}'s Albums</h2>
+        </div>
+    </div>
+
+    {% if albums %}
+        {% for album in albums %}
+            <div class="col-sm-4 col-lg-2">
+                <div class="thumbnail">
+                    <a href="{% url 'music:detail' album.id %}">
+                        <img class="img-responsive" src="{{ album.album_logo}}">
+                    </a>
+                    <div class="caption text-left">
+                        <h2 class="text-muted">{{album.title}}</h2>
+                        <h2 class="text-muted">{{album.singer}}</h2>
+                        <!-- Details-->
+                        <a href="{% url 'music:detail' album.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+                        <!-- Delete Album-->
+                        <form action="{% url 'music:delete-album' album.id %}" method="post" style=" display : inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="album.id" value="{{ album.id }}" />
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </form>
+
+                        <!-- Favorite Album -->
+                        <a href="#" class="btn btn-default btn-sm btn-favorite">
+                            <span class="glyphicon glyphicon-star {% if album.is_favorite %} active {% endif %}"></span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+
+        {% endfor %}
+    {% else %}
+        <div class="col-sm-12">
+             <br>
+            <a href="{% url 'music:albumAdd' %}">
+                <button type="button" class="btn btn-success">
+                   <span class="glyphicon glyphicon-plus"></span> &nbsp; Add an Album
+               </button>
+            </a>
+
+        </div>
+    {% endif %}
+</div>
+{% endblock%}
